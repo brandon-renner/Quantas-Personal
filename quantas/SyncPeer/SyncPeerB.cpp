@@ -81,9 +81,7 @@ void SyncPeerB::performComputation() {
             Packet packet = popInStream();
             interfaceId source = packet.sourceId();
             json Message = packet.getMessage();
-            if (Message["action"] == "safe" &&
-                std::find(children.begin(), children.end(), source) !=
-                    children.end()) {
+            if (Message["action"] == "safe") {
                 std::cout << publicId() << " received safe message from child "
                           << source << std::endl;
                 childrenAckFrom++;
