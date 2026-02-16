@@ -74,8 +74,7 @@ void SyncPeerB::performComputation() {
         std::cout << publicId() << " completed a computation" << std::endl;
         computationCount++;
         computationPerformed = true;
-    }
-    if ((SentRound <= SafeRound) && computationPerformed) {
+    } else if (computationPerformed) {
         // All nodes, after performing computation, must listen for messages
         // being sent to them
         while (!inStreamEmpty()) {
@@ -88,7 +87,8 @@ void SyncPeerB::performComputation() {
                 std::cout << publicId() << " received safe message from child "
                           << source << std::endl;
                 childrenAckFrom++;
-                if (childrenAckFrom == children.size() && !isRoot) {
+                if (childrenAckFrom == children.size() && !isRoot &&
+                    SentRound <= SafeRound) {
                     json msg;
                     SentRound = RoundManager::currentRound();
                     msg["round"] = SentRound;
@@ -98,8 +98,8 @@ void SyncPeerB::performComputation() {
                     }
                     messagesSent += neighbors().size();
                     childrenAckFrom = 0;
-                    computationPerformed = false;
-                } else if (childrenAckFrom == children.size() && isRoot) {
+                } else if (childrenAckFrom == children.size() && isRoot &&
+                           SentRound <= SafeRound) {
                     SentRound = SafeRound = RoundManager::currentRound();
                     json msg;
                     msg["round"] = SentRound;
@@ -115,12 +115,13 @@ void SyncPeerB::performComputation() {
                 std::cout << publicId() << " received pulse message from root "
                           << source << std::endl;
                 SafeRound = Message["round"];
+                computationPerformed = false;
             }
         }
         // leaf nodes case: has no children, thus should be permitted to
         // send messages after performing computation even with no messages
         // received
-        if (children.size() == 0) {
+        if (children.size() == 0 && SentRound <= SafeRound) {
             json msg;
             SentRound = RoundManager::currentRound();
             msg["round"] = SentRound;
@@ -129,7 +130,6 @@ void SyncPeerB::performComputation() {
                 unicastTo(msg, nbr);
             }
             messagesSent += neighbors().size();
-            computationPerformed = false;
         }
     }
 }
