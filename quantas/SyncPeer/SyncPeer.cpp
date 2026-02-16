@@ -37,12 +37,8 @@ SyncPeer::~SyncPeer() = default;
 
 void SyncPeer::performComputation() {
     if (SentRound <= SafeRound) {
-        std::cout << publicId() << " completed a computation" << std::endl;
+        // std::cout << publicId() << " completed a computation" << std::endl;
         computationCount++;
-        LogWriter::pushValue(
-            "peer" + std::to_string(publicId()) + "_computationCount",
-            computationCount
-        );
         SentRound = RoundManager::currentRound();
         json msg;
         msg["round"] = SentRound;
