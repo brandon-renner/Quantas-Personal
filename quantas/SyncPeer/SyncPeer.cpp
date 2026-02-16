@@ -76,8 +76,7 @@ void SyncPeer::performComputation() {
 }
 
 void SyncPeer::initParameters(const std::vector<Peer *> &_peers) {
-    const std::vector<SyncPeer *> peers =
-        reinterpret_cast<std::vector<SyncPeer *> const &>(_peers);
+    // no specific parameters to initialize for this peer type
 }
 
 void SyncPeer::endOfRound(std::vector<Peer *> &peers) {
