@@ -70,11 +70,11 @@ void SyncPeerB::initParameters(const std::vector<Peer *> &_peers) {
 }
 
 void SyncPeerB::performComputation() {
-    if (SentRound <= SafeRound && !computationPerformed) {
+    if ((SentRound <= SafeRound) && !computationPerformed) {
         std::cout << publicId() << " completed a computation" << std::endl;
         computationCount++;
         computationPerformed = true;
-    } else if (SentRound <= SafeRound && computationPerformed) {
+    } else if ((SentRound <= SafeRound) && computationPerformed) {
         // All nodes, after performing computation, must listen for messages
         // being sent to them
         while (!inStreamEmpty()) {
