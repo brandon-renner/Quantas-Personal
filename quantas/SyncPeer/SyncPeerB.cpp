@@ -74,7 +74,8 @@ void SyncPeerB::performComputation() {
         std::cout << publicId() << " completed a computation" << std::endl;
         computationCount++;
         computationPerformed = true;
-    } else if ((SentRound <= SafeRound) && computationPerformed) {
+    }
+    if ((SentRound <= SafeRound) && computationPerformed) {
         // All nodes, after performing computation, must listen for messages
         // being sent to them
         while (!inStreamEmpty()) {
