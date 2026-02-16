@@ -40,7 +40,7 @@ class SyncPeerB : public Peer {
     int SentRound = -1;
     int SafeRound = -1;
 
-    // std::vector<interfaceId> children = {};
+    std::vector<interfaceId> children = {};
     bool isRoot = false;
 
     int childrenAckFrom = 0;
