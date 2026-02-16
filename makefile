@@ -20,7 +20,7 @@
 # Configure this for the specific input file.
 # Make sure to include the path to the input file 
 
-INPUTFILE := quantas/ExamplePeer/ExampleInput.json
+# INPUTFILE := quantas/ExamplePeer/ExampleInput.json
 
 # INPUTFILE := quantas/AltBitPeer/AltBitUtility.json
 
@@ -37,6 +37,8 @@ INPUTFILE := quantas/ExamplePeer/ExampleInput.json
 # INPUTFILE := quantas/RaftPeer/RaftInput.json
 
 # INPUTFILE := quantas/StableDataLinkPeer/StableDataLinkInput.json
+
+INPUTFILE := quantas/SyncPeer/SyncPeerInput.json
 
 ############################### Variables and Flags ###############################
 

@@ -1,0 +1,82 @@
+{
+  "algorithms": [
+    "SyncPeer/SyncPeer.cpp"
+  ],
+  "experiments": [
+    {
+      "logFile": "SyncLog1.txt",
+      "threadCount": 1,
+      "distribution": {
+        "type": "uniform",
+        "minDelay": 0,
+        "maxDelay": 1,
+        "dropProbability": 0.0
+      },
+      "topology": {
+        "type": "complete",
+        "initialPeers": 5,
+        "initialPeerType": "SyncPeer"
+      },
+      "tests": 10,
+      "rounds": 100
+    },
+    {
+      "logFile": "SyncLog2.txt",
+      "threadCount": 1,
+      "distribution": {
+        "type": "uniform",
+        "minDelay": 0,
+        "maxDelay": 1,
+        "dropProbability": 0.0
+      },
+      "topology": {
+        "type": "userList",
+        "initialPeers": 5,
+        "list": {
+          "0": [ 1, 2, 3 ],
+          "1": [ 0, 3, 4 ],
+          "2": [ 0, 4 ],
+          "3": [ 0, 1, 4 ],
+          "4": [ 1, 2, 3 ]
+        },
+        "initialPeerType": "SyncPeer"
+      },
+      "tests": 10,
+      "rounds": 100
+    },
+    {
+      "logFile": "SyncLog3.txt",
+      "threadCount": 1,
+      "distribution": {
+        "type": "uniform",
+        "minDelay": 0,
+        "maxDelay": 1,
+        "dropProbability": 0.0
+      },
+      "topology": {
+        "type": "chain",
+        "initialPeers": 5,
+        "initialPeerType": "SyncPeer"
+      },
+      "tests": 10,
+      "rounds": 100
+    },
+    {
+      "logFile": "SyncLog4.txt",
+      "threadCount": 1,
+      "distribution": {
+        "type": "uniform",
+        "minDelay": 0,
+        "maxDelay": 1,
+        "dropProbability": 0.0
+      },
+      "topology": {
+        "type": "ring",
+        "initialPeers": 5,
+        "initialPeerType": "SyncPeer"
+      },
+      "tests": 10,
+      "rounds": 100
+    }
+  ]
+}
