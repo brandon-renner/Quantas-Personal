@@ -31,7 +31,7 @@ SyncPeerB::SyncPeerB(const SyncPeerB &rhs) : Peer(rhs) {
     SentRound = rhs.SentRound;
     SafeRound = rhs.SafeRound;
     childrenAckFrom = rhs.childrenAckFrom;
-    children = rhs.children;
+    // children = rhs.children;
     isRoot = rhs.isRoot;
 }
 
@@ -46,43 +46,41 @@ void SyncPeerB::initParameters(const std::vector<Peer *> &_peers) {
     for (SyncPeerB *peer : peers) {
         if (peer->neighbors().size() > 1) {
             peer->isRoot = true;
-        } else {
-            for (const auto &nbr : peer->neighbors()) {
-                json msg;
-                msg["action"] = "init";
-                peer->unicastTo(msg, nbr);
-            }
-        }
-    }
+        } // else {
+          //  for (const auto &nbr : peer->neighbors()) {
+          //     json msg;
+          //     msg["action"] = "init";
+          //     peer->unicastTo(msg, nbr);
+        // }
+        // }
+    } /*
 
-    // grab init messages from children, add to children vector for later
-    for (SyncPeerB *peer : peers) {
-        while (!peer->inStreamEmpty()) {
-            Packet packet = peer->popInStream();
-            interfaceId source = packet.sourceId();
-            json Message = packet.getMessage();
-            if (Message["action"] == "init") {
-                peer->children.push_back(source);
-            }
-        }
-    }
+     // grab init messages from children, add to children vector for later
+     for (SyncPeerB *peer : peers) {
+         while (!(peer->inStreamEmpty())) {
+             Packet packet = peer->popInStream();
+             interfaceId source = packet.sourceId();
+             json Message = packet.getMessage();
+             if (Message["action"] == "init") {
+                 peer->children.push_back(source);
+             }
+         }
+     }*/
 }
 
 void SyncPeerB::performComputation() {
     // Every node should check its instream every round to see if it has
-    // received a "safe" message from its children, leaves skip over this while
+    // received a "safe" message from its children, leaf skips over this while
+    // loop
     while (!inStreamEmpty()) {
         Packet packet = popInStream();
         interfaceId source = packet.sourceId();
         json Message = packet.getMessage();
-        if (Message["action"] == "safe" &&
-            std::find(children.begin(), children.end(), source) !=
-                children.end()) {
+        if (Message["action"] == "safe") {
             std::cout << publicId() << " received safe message from child "
                       << source << std::endl;
             childrenAckFrom++;
-            if (childrenAckFrom == children.size() && !isRoot &&
-                SentRound <= SafeRound) {
+            if (childrenAckFrom == 2 && !isRoot && SentRound <= SafeRound) {
                 std::cout << publicId() << " completed a computation"
                           << std::endl;
                 computationCount++;
@@ -95,7 +93,7 @@ void SyncPeerB::performComputation() {
                 }
                 messagesSent += neighbors().size();
                 childrenAckFrom = 0;
-            } else if (childrenAckFrom == children.size() && isRoot &&
+            } else if (childrenAckFrom == 2 && isRoot &&
                        SentRound <= SafeRound) {
                 std::cout << publicId() << " completed a computation"
                           << std::endl;

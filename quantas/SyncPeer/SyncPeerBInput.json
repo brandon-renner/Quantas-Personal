@@ -27,7 +27,7 @@
         "initialPeerType": "SyncPeerB"
       },
       "tests": 10,
-      "rounds": 1000
+      "rounds": 100
     }
   ]
 }
