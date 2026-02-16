@@ -33,7 +33,6 @@ SyncPeerB::SyncPeerB(const SyncPeerB &rhs) : Peer(rhs) {
     childrenAckFrom = rhs.childrenAckFrom;
     children = rhs.children;
     isRoot = rhs.isRoot;
-    computationPerformed = rhs.computationPerformed;
 }
 
 SyncPeerB::~SyncPeerB() = default;
@@ -70,67 +69,65 @@ void SyncPeerB::initParameters(const std::vector<Peer *> &_peers) {
 }
 
 void SyncPeerB::performComputation() {
-    if ((SentRound <= SafeRound) && !computationPerformed) {
+    // Every node should check its instream every round to see if it has
+    // received a "safe" message from its children, leaves skip over this while
+    while (!inStreamEmpty()) {
+        Packet packet = popInStream();
+        interfaceId source = packet.sourceId();
+        json Message = packet.getMessage();
+        if (Message["action"] == "safe" &&
+            std::find(children.begin(), children.end(), source) !=
+                children.end()) {
+            std::cout << publicId() << " received safe message from child "
+                      << source << std::endl;
+            childrenAckFrom++;
+            if (childrenAckFrom == children.size() && !isRoot &&
+                SentRound <= SafeRound) {
+                std::cout << publicId() << " completed a computation"
+                          << std::endl;
+                computationCount++;
+                json msg;
+                SentRound = RoundManager::currentRound();
+                msg["round"] = SentRound;
+                msg["action"] = "safe";
+                for (const auto &nbr : neighbors()) {
+                    unicastTo(msg, nbr);
+                }
+                messagesSent += neighbors().size();
+                childrenAckFrom = 0;
+            } else if (childrenAckFrom == children.size() && isRoot &&
+                       SentRound <= SafeRound) {
+                std::cout << publicId() << " completed a computation"
+                          << std::endl;
+                computationCount++;
+                SentRound = SafeRound = RoundManager::currentRound();
+                json msg;
+                msg["round"] = SentRound;
+                msg["action"] = "pulse";
+                broadcast(msg);
+                messagesSent += neighbors().size();
+                childrenAckFrom = 0;
+            }
+        } else if (Message["action"] == "pulse") {
+            std::cout << publicId() << " received pulse message from parent "
+                      << source << std::endl;
+            SafeRound = Message["round"];
+        }
+    }
+    // leaf nodes case: has no children, thus should be permitted to
+    // send messages after performing computation even with no messages
+    // received
+    if (children.size() == 0 && SentRound <= SafeRound) {
         std::cout << publicId() << " completed a computation" << std::endl;
         computationCount++;
-        computationPerformed = true;
-    } else if (computationPerformed) {
-        // All nodes, after performing computation, must listen for messages
-        // being sent to them
-        while (!inStreamEmpty()) {
-            Packet packet = popInStream();
-            interfaceId source = packet.sourceId();
-            json Message = packet.getMessage();
-            if (Message["action"] == "safe" &&
-                std::find(children.begin(), children.end(), source) !=
-                    children.end()) {
-                std::cout << publicId() << " received safe message from child "
-                          << source << std::endl;
-                childrenAckFrom++;
-                if (childrenAckFrom == children.size() && !isRoot &&
-                    SentRound <= SafeRound) {
-                    json msg;
-                    SentRound = RoundManager::currentRound();
-                    msg["round"] = SentRound;
-                    msg["action"] = "safe";
-                    for (const auto &nbr : neighbors()) {
-                        unicastTo(msg, nbr);
-                    }
-                    messagesSent += neighbors().size();
-                    childrenAckFrom = 0;
-                } else if (childrenAckFrom == children.size() && isRoot &&
-                           SentRound <= SafeRound) {
-                    SentRound = SafeRound = RoundManager::currentRound();
-                    json msg;
-                    msg["round"] = SentRound;
-                    msg["action"] = "pulse";
-                    for (const auto &nbr : neighbors()) {
-                        unicastTo(msg, nbr);
-                    }
-                    messagesSent += neighbors().size();
-                    childrenAckFrom = 0;
-                    computationPerformed = false;
-                }
-            } else if (Message["action"] == "pulse") {
-                std::cout << publicId() << " received pulse message from root "
-                          << source << std::endl;
-                SafeRound = Message["round"];
-                computationPerformed = false;
-            }
+        json msg;
+        SentRound = RoundManager::currentRound();
+        msg["round"] = SentRound;
+        msg["action"] = "safe";
+        for (const auto &nbr : neighbors()) {
+            unicastTo(msg, nbr);
         }
-        // leaf nodes case: has no children, thus should be permitted to
-        // send messages after performing computation even with no messages
-        // received
-        if (children.size() == 0 && SentRound <= SafeRound) {
-            json msg;
-            SentRound = RoundManager::currentRound();
-            msg["round"] = SentRound;
-            msg["action"] = "safe";
-            for (const auto &nbr : neighbors()) {
-                unicastTo(msg, nbr);
-            }
-            messagesSent += neighbors().size();
-        }
+        messagesSent += neighbors().size();
     }
 }
 
