@@ -15,6 +15,7 @@ QUANTAS. If not, see <https://www.gnu.org/licenses/>.
 #ifndef SYNCBPEER_HPP
 #define SYNCBPEER_HPP
 
+#include <algorithm>
 #include <set>
 #include <string>
 #include <utility>

@@ -54,18 +54,6 @@ void SyncPeerB::initParameters(const std::vector<Peer *> &_peers) {
             }
         }
     }
-
-    // grab init messages from children, add to children vector for later
-    for (SyncPeerB *peer : peers) {
-        while (!(peer->inStreamEmpty())) {
-            Packet packet = peer->popInStream();
-            interfaceId source = packet.sourceId();
-            json Message = packet.getMessage();
-            if (Message["action"] == "init") {
-                peer->children.push_back(source);
-            }
-        }
-    }
 }
 
 void SyncPeerB::performComputation() {
@@ -76,9 +64,15 @@ void SyncPeerB::performComputation() {
         Packet packet = popInStream();
         interfaceId source = packet.sourceId();
         json Message = packet.getMessage();
-        if (Message["action"] == "safe" &&
-            std::find(children.begin(), children.end(), source) !=
-                children.end()) {
+        if (Message["action"] == "init") {
+            // This case should only happen in the first round, and is used to
+            // initialize the children vector for each node
+            std::cout << publicId() << " received init message from child "
+                      << source << std::endl;
+            children.push_back(source);
+        } else if (Message["action"] == "safe" &&
+                   std::find(children.begin(), children.end(), source) !=
+                       children.end()) {
             std::cout << publicId() << " received safe message from child "
                       << source << std::endl;
             childrenAckFrom++;
@@ -89,7 +83,6 @@ void SyncPeerB::performComputation() {
                 computationCount++;
                 json msg;
                 SentRound = RoundManager::currentRound();
-                msg["round"] = SentRound;
                 msg["action"] = "safe";
                 for (const auto &nbr : neighbors()) {
                     unicastTo(msg, nbr);
@@ -123,7 +116,6 @@ void SyncPeerB::performComputation() {
         computationCount++;
         json msg;
         SentRound = RoundManager::currentRound();
-        msg["round"] = SentRound;
         msg["action"] = "safe";
         for (const auto &nbr : neighbors()) {
             unicastTo(msg, nbr);

@@ -8,8 +8,6 @@
       "threadCount": 1,
       "distribution": {
         "type": "uniform",
-        "minDelay": 0,
-        "maxDelay": 1,
         "dropProbability": 0.0
       },
       "topology": {
