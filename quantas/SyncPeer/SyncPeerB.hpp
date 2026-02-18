@@ -43,6 +43,7 @@ class SyncPeerB : public Peer {
 
     std::vector<interfaceId> children = {};
     bool isRoot = false;
+    bool isInit = false;
 
     int childrenAckFrom = 0;
 };
