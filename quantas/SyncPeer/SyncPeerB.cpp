@@ -33,6 +33,7 @@ SyncPeerB::SyncPeerB(const SyncPeerB &rhs) : Peer(rhs) {
     childrenAckFrom = rhs.childrenAckFrom;
     children = rhs.children;
     isRoot = rhs.isRoot;
+    isInit = rhs.isInit;
 }
 
 SyncPeerB::~SyncPeerB() = default;
