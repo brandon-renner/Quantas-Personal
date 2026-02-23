@@ -31,12 +31,14 @@ SyncPeer::SyncPeer(const SyncPeer &rhs) : Peer(rhs) {
     SentRound = rhs.SentRound;
     SafeRound = rhs.SafeRound;
     neighborsAckFrom = rhs.neighborsAckFrom;
+    syncSteps = rhs.syncSteps;
 }
 
 SyncPeer::~SyncPeer() = default;
 
 void SyncPeer::performComputation() {
     if (SentRound <= SafeRound) {
+        syncSteps++;
         std::cout << publicId() << " completed a computation" << std::endl;
         computationCount++;
         SentRound = RoundManager::currentRound();
@@ -83,13 +85,20 @@ void SyncPeer::endOfRound(std::vector<Peer *> &peers) {
     if (RoundManager::currentRound() >= RoundManager::lastRound()) {
         double computations = 0.0;
         double networkCost = 0.0;
+        double syncStepsAvg = 0.0;
+        int peerCount = 0;
         for (const auto *peer :
              reinterpret_cast<const std::vector<SyncPeer *> &>(peers)) {
+            peerCount++;
             computations += peer->computationCount;
             networkCost += peer->messagesSent;
+            syncStepsAvg += peer->syncSteps;
         }
+        syncStepsAvg /= peerCount;
+
         LogWriter::pushValue("messages", networkCost);
         LogWriter::pushValue("computations", computations);
+        LogWriter::pushValue("synchronized steps", syncStepsAvg);
     }
 }
 

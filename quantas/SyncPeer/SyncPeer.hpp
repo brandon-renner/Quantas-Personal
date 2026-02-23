@@ -35,10 +35,12 @@ class SyncPeer : public Peer {
     void initParameters(const std::vector<Peer *> &_peers);
     void endOfRound(std::vector<Peer *> &_peers) override;
 
+    int syncSteps = 0;
+
     int messagesSent = 0;
     int computationCount = 0;
-    int SentRound = 0;
-    int SafeRound = 0;
+    int SentRound = -1;
+    int SafeRound = -1;
 
     int neighborsAckFrom = 0;
 };

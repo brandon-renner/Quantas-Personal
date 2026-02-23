@@ -97,6 +97,7 @@ void SyncPeerB::performComputation() {
                     broadcast(msg);
                     messagesSent += neighbors().size();
                     childrenAckFrom = 0;
+                    SynchedStepsBeta++;
                 }
             } else if (Message["action"] == "pulse") {
                 std::cout << publicId()
@@ -137,6 +138,7 @@ void SyncPeerB::endOfRound(std::vector<Peer *> &_peers) {
         }
         LogWriter::pushValue("messages", networkCost);
         LogWriter::pushValue("computations", computations);
+        LogWriter::pushValue("synchronized steps", SynchedStepsBeta);
     }
 }
 
