@@ -14,14 +14,82 @@
       },
       "topology": {
         "type": "complete",
+        "initialPeers": 5,
+        "initialPeerType": "SyncPeer"
+      },
+      "tests": 10,
+      "rounds": 100
+    },
+    {
+      "logFile": "SyncLog2.txt",
+      "threadCount": 1,
+      "distribution": {
+        "type": "uniform",
+        "minDelay": 0,
+        "maxDelay": 1,
+        "dropProbability": 0.0
+      },
+      "topology": {
+        "type": "complete",
+        "initialPeers": 10,
+        "initialPeerType": "SyncPeer"
+      },
+      "tests": 10,
+      "rounds": 100
+    },
+    {
+      "logFile": "SyncLog3.txt",
+      "threadCount": 1,
+      "distribution": {
+        "type": "uniform",
+        "minDelay": 0,
+        "maxDelay": 1,
+        "dropProbability": 0.0
+      },
+      "topology": {
+        "type": "complete",
+        "initialPeers": 25,
+        "initialPeerType": "SyncPeer"
+      },
+      "tests": 10,
+      "rounds": 100
+    },
+    {
+      "logFile": "SyncLog4.txt",
+      "threadCount": 1,
+      "distribution": {
+        "type": "uniform",
+        "minDelay": 0,
+        "maxDelay": 1,
+        "dropProbability": 0.0
+      },
+      "topology": {
+        "type": "complete",
         "initialPeers": 50,
         "initialPeerType": "SyncPeer"
       },
       "tests": 10,
-      "rounds": 1000
+      "rounds": 100
     },
     {
-      "logFile": "SyncLog2.txt",
+      "logFile": "SyncLog5.txt",
+      "threadCount": 1,
+      "distribution": {
+        "type": "uniform",
+        "minDelay": 0,
+        "maxDelay": 1,
+        "dropProbability": 0.0
+      },
+      "topology": {
+        "type": "complete",
+        "initialPeers": 75,
+        "initialPeerType": "SyncPeer"
+      },
+      "tests": 10,
+      "rounds": 100
+    },
+    {
+      "logFile": "SyncLog6.txt",
       "threadCount": 1,
       "distribution": {
         "type": "uniform",
@@ -35,75 +103,7 @@
         "initialPeerType": "SyncPeer"
       },
       "tests": 10,
-      "rounds": 1000
-    },
-    {
-      "logFile": "SyncLog3.txt",
-      "threadCount": 1,
-      "distribution": {
-        "type": "uniform",
-        "minDelay": 0,
-        "maxDelay": 1,
-        "dropProbability": 0.0
-      },
-      "topology": {
-        "type": "complete",
-        "initialPeers": 250,
-        "initialPeerType": "SyncPeer"
-      },
-      "tests": 10,
-      "rounds": 1000
-    },
-    {
-      "logFile": "SyncLog4.txt",
-      "threadCount": 1,
-      "distribution": {
-        "type": "uniform",
-        "minDelay": 0,
-        "maxDelay": 1,
-        "dropProbability": 0.0
-      },
-      "topology": {
-        "type": "complete",
-        "initialPeers": 500,
-        "initialPeerType": "SyncPeer"
-      },
-      "tests": 10,
-      "rounds": 1000
-    },
-    {
-      "logFile": "SyncLog5.txt",
-      "threadCount": 1,
-      "distribution": {
-        "type": "uniform",
-        "minDelay": 0,
-        "maxDelay": 1,
-        "dropProbability": 0.0
-      },
-      "topology": {
-        "type": "complete",
-        "initialPeers": 1000,
-        "initialPeerType": "SyncPeer"
-      },
-      "tests": 10,
-      "rounds": 1000
-    },
-    {
-      "logFile": "SyncLog6.txt",
-      "threadCount": 1,
-      "distribution": {
-        "type": "uniform",
-        "minDelay": 0,
-        "maxDelay": 1,
-        "dropProbability": 0.0
-      },
-      "topology": {
-        "type": "complete",
-        "initialPeers": 2500,
-        "initialPeerType": "SyncPeer"
-      },
-      "tests": 10,
-      "rounds": 1000
+      "rounds": 100
     }
   ]
 }
