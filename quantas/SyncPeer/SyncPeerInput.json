@@ -14,7 +14,7 @@
       },
       "topology": {
         "type": "complete",
-        "initialPeers": 10,
+        "initialPeers": 50,
         "initialPeerType": "SyncPeer"
       },
       "tests": 10,
@@ -48,7 +48,7 @@
       },
       "topology": {
         "type": "complete",
-        "initialPeers": 500,
+        "initialPeers": 250,
         "initialPeerType": "SyncPeer"
       },
       "tests": 10,
@@ -65,7 +65,7 @@
       },
       "topology": {
         "type": "complete",
-        "initialPeers": 2500,
+        "initialPeers": 500,
         "initialPeerType": "SyncPeer"
       },
       "tests": 10,
@@ -82,7 +82,7 @@
       },
       "topology": {
         "type": "complete",
-        "initialPeers": 10000,
+        "initialPeers": 1000,
         "initialPeerType": "SyncPeer"
       },
       "tests": 10,
@@ -99,7 +99,7 @@
       },
       "topology": {
         "type": "complete",
-        "initialPeers": 25000,
+        "initialPeers": 2500,
         "initialPeerType": "SyncPeer"
       },
       "tests": 10,
