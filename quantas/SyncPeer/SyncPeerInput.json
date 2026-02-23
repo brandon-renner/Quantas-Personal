@@ -86,6 +86,23 @@
         "initialPeerType": "SyncPeer"
       },
       "tests": 10,
+      "rounds": 500
+    },
+    {
+      "logFile": "SyncLog6.txt",
+      "threadCount": 1,
+      "distribution": {
+        "type": "uniform",
+        "minDelay": 0,
+        "maxDelay": 1,
+        "dropProbability": 0.0
+      },
+      "topology": {
+        "type": "complete",
+        "initialPeers": 10,
+        "initialPeerType": "SyncPeer"
+      },
+      "tests": 10,
       "rounds": 1000
     }
   ]
