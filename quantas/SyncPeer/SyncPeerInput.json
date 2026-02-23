@@ -18,7 +18,7 @@
         "initialPeerType": "SyncPeer"
       },
       "tests": 10,
-      "rounds": 10
+      "rounds": 1000
     },
     {
       "logFile": "SyncLog2.txt",
@@ -31,11 +31,11 @@
       },
       "topology": {
         "type": "complete",
-        "initialPeers": 10,
+        "initialPeers": 100,
         "initialPeerType": "SyncPeer"
       },
       "tests": 10,
-      "rounds": 25
+      "rounds": 1000
     },
     {
       "logFile": "SyncLog3.txt",
@@ -48,11 +48,11 @@
       },
       "topology": {
         "type": "complete",
-        "initialPeers": 10,
+        "initialPeers": 500,
         "initialPeerType": "SyncPeer"
       },
       "tests": 10,
-      "rounds": 50
+      "rounds": 1000
     },
     {
       "logFile": "SyncLog4.txt",
@@ -65,11 +65,11 @@
       },
       "topology": {
         "type": "complete",
-        "initialPeers": 10,
+        "initialPeers": 2500,
         "initialPeerType": "SyncPeer"
       },
       "tests": 10,
-      "rounds": 100
+      "rounds": 1000
     },
     {
       "logFile": "SyncLog5.txt",
@@ -82,11 +82,11 @@
       },
       "topology": {
         "type": "complete",
-        "initialPeers": 10,
+        "initialPeers": 10000,
         "initialPeerType": "SyncPeer"
       },
       "tests": 10,
-      "rounds": 500
+      "rounds": 1000
     },
     {
       "logFile": "SyncLog6.txt",
