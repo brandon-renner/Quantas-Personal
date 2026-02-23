@@ -39,7 +39,6 @@ SyncPeer::~SyncPeer() = default;
 void SyncPeer::performComputation() {
     if (SentRound <= SafeRound) {
         syncSteps++;
-        std::cout << publicId() << " completed a computation" << std::endl;
         computationCount++;
         SentRound = RoundManager::currentRound();
         json msg;
@@ -57,9 +56,6 @@ void SyncPeer::performComputation() {
             if (Message["action"] == "ack" &&
                 neighbors().find(source) != neighbors().end() &&
                 Message["round"] == SentRound) {
-                std::cout << publicId()
-                          << " received acknowledgement message from " << source
-                          << std::endl;
                 neighborsAckFrom++;
                 if (neighborsAckFrom == neighbors().size()) {
                     SafeRound = RoundManager::currentRound();
@@ -69,8 +65,6 @@ void SyncPeer::performComputation() {
                 json ackMsg;
                 ackMsg["round"] = Message["round"];
                 ackMsg["action"] = "ack";
-                std::cout << publicId() << " sending acknowledgement to "
-                          << source << std::endl;
                 unicastTo(ackMsg, source);
             }
         }

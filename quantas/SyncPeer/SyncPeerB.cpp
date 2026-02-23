@@ -63,19 +63,13 @@ void SyncPeerB::performComputation() {
             if (Message["action"] == "init") {
                 // This case should only happen in the first round, and is used
                 // to initialize the children vector for each node
-                std::cout << publicId() << " received init message from child "
-                          << source << std::endl;
                 children.push_back(source);
             } else if (Message["action"] == "safe" &&
                        std::find(children.begin(), children.end(), source) !=
                            children.end()) {
-                std::cout << publicId() << " received safe message from child "
-                          << source << std::endl;
                 childrenAckFrom++;
                 if (childrenAckFrom == children.size() && !isRoot &&
                     SentRound <= SafeRound) {
-                    std::cout << publicId() << " completed a computation"
-                              << std::endl;
                     computationCount++;
                     json msg;
                     SentRound = RoundManager::currentRound();
@@ -87,8 +81,6 @@ void SyncPeerB::performComputation() {
                     childrenAckFrom = 0;
                 } else if (childrenAckFrom == children.size() && isRoot &&
                            SentRound <= SafeRound) {
-                    std::cout << publicId() << " completed a computation"
-                              << std::endl;
                     computationCount++;
                     SentRound = SafeRound = RoundManager::currentRound();
                     json msg;
@@ -100,9 +92,6 @@ void SyncPeerB::performComputation() {
                     SynchedStepsBeta++;
                 }
             } else if (Message["action"] == "pulse") {
-                std::cout << publicId()
-                          << " received pulse message from parent " << source
-                          << std::endl;
                 SafeRound = Message["round"];
             }
         }
@@ -110,7 +99,6 @@ void SyncPeerB::performComputation() {
         // send messages after performing computation even with no messages
         // received
         if (children.size() == 0 && SentRound <= SafeRound) {
-            std::cout << publicId() << " completed a computation" << std::endl;
             computationCount++;
             json msg;
             SentRound = RoundManager::currentRound();
