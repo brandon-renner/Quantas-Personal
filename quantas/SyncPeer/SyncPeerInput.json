@@ -13,7 +13,7 @@
         "dropProbability": 0.0
       },
       "topology": {
-        "type": "chain",
+        "type": "complete",
         "initialPeers": 5,
         "initialPeerType": "SyncPeer"
       },
@@ -30,7 +30,7 @@
         "dropProbability": 0.0
       },
       "topology": {
-        "type": "chain",
+        "type": "complete",
         "initialPeers": 10,
         "initialPeerType": "SyncPeer"
       },
@@ -47,7 +47,7 @@
         "dropProbability": 0.0
       },
       "topology": {
-        "type": "chain",
+        "type": "complete",
         "initialPeers": 25,
         "initialPeerType": "SyncPeer"
       },
@@ -64,7 +64,7 @@
         "dropProbability": 0.0
       },
       "topology": {
-        "type": "chain",
+        "type": "complete",
         "initialPeers": 50,
         "initialPeerType": "SyncPeer"
       },
@@ -81,7 +81,7 @@
         "dropProbability": 0.0
       },
       "topology": {
-        "type": "chain",
+        "type": "complete",
         "initialPeers": 75,
         "initialPeerType": "SyncPeer"
       },
@@ -98,7 +98,7 @@
         "dropProbability": 0.0
       },
       "topology": {
-        "type": "chain",
+        "type": "complete",
         "initialPeers": 100,
         "initialPeerType": "SyncPeer"
       },
