@@ -99,7 +99,7 @@
       },
       "topology": {
         "type": "complete",
-        "initialPeers": 10,
+        "initialPeers": 25000,
         "initialPeerType": "SyncPeer"
       },
       "tests": 10,
