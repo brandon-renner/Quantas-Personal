@@ -1,8 +1,312 @@
 {
-  "algorithms": [
-    "SyncPeer/SyncPeerB.cpp"
-  ],
+  "algorithms": ["SyncPeer/SyncPeerB.cpp"],
   "experiments": [
+    {
+      "logFile": "SyncBLog1.txt",
+      "threadCount": 1,
+      "distribution": {
+        "type": "uniform",
+        "minDelay": 0,
+        "maxDelay": 1,
+        "dropProbability": 0.0
+      },
+      "topology": {
+        "type": "userList",
+        "initialPeers": 15,
+        "list": {
+          "0": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+          "1": [0],
+          "2": [0],
+          "3": [1],
+          "4": [1],
+          "5": [2],
+          "6": [2],
+          "7": [3],
+          "8": [3],
+          "9": [4],
+          "10": [4],
+          "11": [5],
+          "12": [5],
+          "13": [6],
+          "14": [6]
+        },
+        "initialPeerType": "SyncPeerB"
+      },
+      "tests": 10,
+      "rounds": 10
+    },
+    {
+      "logFile": "SyncBLog2.txt",
+      "threadCount": 1,
+      "distribution": {
+        "type": "uniform",
+        "minDelay": 0,
+        "maxDelay": 1,
+        "dropProbability": 0.0
+      },
+      "topology": {
+        "type": "userList",
+        "initialPeers": 15,
+        "list": {
+          "0": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+          "1": [0],
+          "2": [0],
+          "3": [1],
+          "4": [1],
+          "5": [2],
+          "6": [2],
+          "7": [3],
+          "8": [3],
+          "9": [4],
+          "10": [4],
+          "11": [5],
+          "12": [5],
+          "13": [6],
+          "14": [6]
+        },
+        "initialPeerType": "SyncPeerB"
+      },
+      "tests": 10,
+      "rounds": 20
+    },
+    {
+      "logFile": "SyncBLog3.txt",
+      "threadCount": 1,
+      "distribution": {
+        "type": "uniform",
+        "minDelay": 0,
+        "maxDelay": 1,
+        "dropProbability": 0.0
+      },
+      "topology": {
+        "type": "userList",
+        "initialPeers": 15,
+        "list": {
+          "0": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+          "1": [0],
+          "2": [0],
+          "3": [1],
+          "4": [1],
+          "5": [2],
+          "6": [2],
+          "7": [3],
+          "8": [3],
+          "9": [4],
+          "10": [4],
+          "11": [5],
+          "12": [5],
+          "13": [6],
+          "14": [6]
+        },
+        "initialPeerType": "SyncPeerB"
+      },
+      "tests": 10,
+      "rounds": 30
+    },
+    {
+      "logFile": "SyncBLog4.txt",
+      "threadCount": 1,
+      "distribution": {
+        "type": "uniform",
+        "minDelay": 0,
+        "maxDelay": 1,
+        "dropProbability": 0.0
+      },
+      "topology": {
+        "type": "userList",
+        "initialPeers": 15,
+        "list": {
+          "0": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+          "1": [0],
+          "2": [0],
+          "3": [1],
+          "4": [1],
+          "5": [2],
+          "6": [2],
+          "7": [3],
+          "8": [3],
+          "9": [4],
+          "10": [4],
+          "11": [5],
+          "12": [5],
+          "13": [6],
+          "14": [6]
+        },
+        "initialPeerType": "SyncPeerB"
+      },
+      "tests": 10,
+      "rounds": 40
+    },
+    {
+      "logFile": "SyncBLog5.txt",
+      "threadCount": 1,
+      "distribution": {
+        "type": "uniform",
+        "minDelay": 0,
+        "maxDelay": 1,
+        "dropProbability": 0.0
+      },
+      "topology": {
+        "type": "userList",
+        "initialPeers": 15,
+        "list": {
+          "0": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+          "1": [0],
+          "2": [0],
+          "3": [1],
+          "4": [1],
+          "5": [2],
+          "6": [2],
+          "7": [3],
+          "8": [3],
+          "9": [4],
+          "10": [4],
+          "11": [5],
+          "12": [5],
+          "13": [6],
+          "14": [6]
+        },
+        "initialPeerType": "SyncPeerB"
+      },
+      "tests": 10,
+      "rounds": 50
+    },
+    {
+      "logFile": "SyncBLog6.txt",
+      "threadCount": 1,
+      "distribution": {
+        "type": "uniform",
+        "minDelay": 0,
+        "maxDelay": 1,
+        "dropProbability": 0.0
+      },
+      "topology": {
+        "type": "userList",
+        "initialPeers": 15,
+        "list": {
+          "0": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+          "1": [0],
+          "2": [0],
+          "3": [1],
+          "4": [1],
+          "5": [2],
+          "6": [2],
+          "7": [3],
+          "8": [3],
+          "9": [4],
+          "10": [4],
+          "11": [5],
+          "12": [5],
+          "13": [6],
+          "14": [6]
+        },
+        "initialPeerType": "SyncPeerB"
+      },
+      "tests": 10,
+      "rounds": 60
+    },
+    {
+      "logFile": "SyncBLog7.txt",
+      "threadCount": 1,
+      "distribution": {
+        "type": "uniform",
+        "minDelay": 0,
+        "maxDelay": 1,
+        "dropProbability": 0.0
+      },
+      "topology": {
+        "type": "userList",
+        "initialPeers": 15,
+        "list": {
+          "0": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+          "1": [0],
+          "2": [0],
+          "3": [1],
+          "4": [1],
+          "5": [2],
+          "6": [2],
+          "7": [3],
+          "8": [3],
+          "9": [4],
+          "10": [4],
+          "11": [5],
+          "12": [5],
+          "13": [6],
+          "14": [6]
+        },
+        "initialPeerType": "SyncPeerB"
+      },
+      "tests": 10,
+      "rounds": 70
+    },
+    {
+      "logFile": "SyncBLog8.txt",
+      "threadCount": 1,
+      "distribution": {
+        "type": "uniform",
+        "minDelay": 0,
+        "maxDelay": 1,
+        "dropProbability": 0.0
+      },
+      "topology": {
+        "type": "userList",
+        "initialPeers": 15,
+        "list": {
+          "0": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+          "1": [0],
+          "2": [0],
+          "3": [1],
+          "4": [1],
+          "5": [2],
+          "6": [2],
+          "7": [3],
+          "8": [3],
+          "9": [4],
+          "10": [4],
+          "11": [5],
+          "12": [5],
+          "13": [6],
+          "14": [6]
+        },
+        "initialPeerType": "SyncPeerB"
+      },
+      "tests": 10,
+      "rounds": 80
+    },
+    {
+      "logFile": "SyncBLog9.txt",
+      "threadCount": 1,
+      "distribution": {
+        "type": "uniform",
+        "minDelay": 0,
+        "maxDelay": 1,
+        "dropProbability": 0.0
+      },
+      "topology": {
+        "type": "userList",
+        "initialPeers": 15,
+        "list": {
+          "0": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+          "1": [0],
+          "2": [0],
+          "3": [1],
+          "4": [1],
+          "5": [2],
+          "6": [2],
+          "7": [3],
+          "8": [3],
+          "9": [4],
+          "10": [4],
+          "11": [5],
+          "12": [5],
+          "13": [6],
+          "14": [6]
+        },
+        "initialPeerType": "SyncPeerB"
+      },
+      "tests": 10,
+      "rounds": 90
+    },
     {
       "logFile": "SyncBLog.txt",
       "threadCount": 1,
@@ -13,16 +317,24 @@
         "dropProbability": 0.0
       },
       "topology": {
-        "type": "userList",
-        "initialPeers": 7,
+        "type": "userList10",
+        "initialPeers": 15,
         "list": {
-          "0": [ 1, 2, 3, 4, 5, 6 ],
-          "1": [ 0 ],
-          "2": [ 0 ],
-          "3": [ 1 ],
-          "4": [ 1 ],
-          "5": [ 2 ],
-          "6": [ 2 ]
+          "0": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+          "1": [0],
+          "2": [0],
+          "3": [1],
+          "4": [1],
+          "5": [2],
+          "6": [2],
+          "7": [3],
+          "8": [3],
+          "9": [4],
+          "10": [4],
+          "11": [5],
+          "12": [5],
+          "13": [6],
+          "14": [6]
         },
         "initialPeerType": "SyncPeerB"
       },

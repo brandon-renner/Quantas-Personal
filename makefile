@@ -38,7 +38,7 @@
 
 # INPUTFILE := quantas/StableDataLinkPeer/StableDataLinkInput.json
 
-INPUTFILE := quantas/SyncPeer/SyncPeerInput.json
+INPUTFILE := quantas/SyncPeer/SyncPeerBInput.json
 
 ############################### Variables and Flags ###############################
 
