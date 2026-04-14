@@ -308,7 +308,7 @@
       "rounds": 90
     },
     {
-      "logFile": "SyncBLog.txt",
+      "logFile": "SyncBLog10.txt",
       "threadCount": 1,
       "distribution": {
         "type": "uniform",
@@ -317,7 +317,7 @@
         "dropProbability": 0.0
       },
       "topology": {
-        "type": "userList10",
+        "type": "userList",
         "initialPeers": 15,
         "list": {
           "0": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
